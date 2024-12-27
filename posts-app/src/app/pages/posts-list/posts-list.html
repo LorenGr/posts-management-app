@@ -1,0 +1,8 @@
+<h1>Post</h1>
+<div class="grid gap-4 p-4">
+    <div *ngFor="let post of posts$ | async" class="border p-4 rounded shadow cursor-pointer"
+        (click)="navigateToPost(post.id)">
+        <h3 class="font-bold text-lg">{{ post.title }}</h3>
+        <p class="text-gray-600">{{ post.body | truncate:50 }}</p>
+    </div>
+</div>
