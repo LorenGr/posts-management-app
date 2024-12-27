@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { PostListComponent } from './pages/posts-list/posts-list';
-import { PostViewComponent } from './pages/posts-view/posts-view';
+import { PostsDetailComponent } from './pages/posts-detail/posts-detail';
+import { PostsListComponent } from './pages/posts-list/posts-list';
 
 export const routes: Routes = [
-    { path: 'posts', component: PostListComponent },
-    { path: 'posts/:id', component: PostViewComponent },
+    { path: 'posts', component: PostsListComponent },
+    { path: 'posts/:id', component: PostsDetailComponent },
     { path: '', redirectTo: '/posts', pathMatch: 'full' },
     { path: '**', redirectTo: '/posts' },
 ];

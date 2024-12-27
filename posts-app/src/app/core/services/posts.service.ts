@@ -5,8 +5,24 @@ import { Apollo, gql } from 'apollo-angular';
 export class PostsService {
     constructor(private apollo: Apollo) { }
 
-    fetchPosts(page: number, limit: number) {
+    fetchPost(id: string) {
+        return this.apollo.query({
+            query: gql`
+                query GetPost($id: ID!) {
+                    post(id: $id) {
+                        id
+                        title
+                        body
+                    }
+                }
+            `,
+            variables: {
+                id
+            }
+        });
+    }
 
+    fetchPosts(page: number, limit: number) {
         return this.apollo.query({
             query: gql`
             query GetPosts($options: PageQueryOptions) {

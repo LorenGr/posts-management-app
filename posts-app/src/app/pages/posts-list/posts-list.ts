@@ -7,18 +7,24 @@ import { selectPosts } from '../../core/state/posts.selectors';
 import { TruncatePipe } from '../../shared/pipes/truncate.pipe';
 import { CommonModule } from '@angular/common';
 import { loadPosts } from '../../core/state/posts.actions';
+import { PaginationComponent } from '../../shared/components/pagination/pagination.component';
 
 @Component({
     selector: 'app-posts-list',
     templateUrl: './posts-list.html',
     standalone: true,
-    imports: [TruncatePipe, CommonModule, StoreModule]
+    imports: [TruncatePipe, CommonModule, StoreModule, PaginationComponent]
 })
-export class PostListComponent {
+export class PostsListComponent {
     posts$: Observable<Post[]>;
+    currentPage: number = 1;
 
     ngOnInit(): void {
         this.store.dispatch(loadPosts());
+    }
+
+    onPageChange(page: number) {
+        this.currentPage = this.currentPage + 1;
     }
 
     constructor(private store: Store, private router: Router) {
