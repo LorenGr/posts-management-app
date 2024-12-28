@@ -26,10 +26,6 @@ The `ColorSelectorComponent` includes a color picker that allows users to change
 
 ## Pipes
 
-### HighlightPipe
-
-The `HighlightPipe` is used to highlight parts of a string that match a search term. It wraps the matching parts in a `span` with a `highlight` class to apply custom styles.
-
 ### TruncatePipe
 
 The `TruncatePipe` is used to truncate long text to a specified length. It adds ellipses (`...`) to indicate that the text has been truncated.

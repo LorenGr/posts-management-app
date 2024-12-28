@@ -1,14 +1,19 @@
 <mat-progress-bar *ngIf="loading$ | async" mode="query"></mat-progress-bar>
 <div class="flex-1 p-4 overflow-y-auto">
     <div class="grid gap-0 overflow-hidden">
+
+        <div *ngIf="!(loading$ | async) && (filteredPosts$ | async)?.length === 0" class="text-center text-gray-500">
+            No results found.
+        </div>
         <div *ngFor="let post of filteredPosts$ | async"
             class="border-gray-700 hover:bg-gray-700 hover:bg-opacity-30 border-l-gray-800 hover:border-l-primary border-l-4 border-b p-4 cursor-pointer"
             (click)="navigateToPost(post.id)">
-            <h3 class="font-bold text-sm text-primary"
-                [innerHTML]="(post.title | highlight:(searchTerm$ | async)) + (post.new | newBadge)">
+            <h3 class="font-bold text-sm text-primary" [highlight]="searchTerm$ | async"
+                [innerHTML]="post.title  + (post.new | newBadge)">
             </h3>
             <p class="text-gray-500">{{ post.body | truncate:50 }}</p>
         </div>
+
     </div>
 </div>
 <div class="sticky bottom-0">
