@@ -1,8 +1,31 @@
 <div class="flex flex-col h-screen">
-    <h1 class="p-4 bg-gray-800 text-white">Posts</h1>
+    <div class="flex p-9 justify-center items-center text-white">
+        <h1 class="flex-1  bg-gray-800 text-white">Posts</h1>
+
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="size-6 mr-3 text-gray-300">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+        </svg>
+
+        <input type="search"
+            class="my-border px-4 py-1 h-9 text-sm bg-transparent text-gray-400 border-gray-600 border rounded-3xl"
+            placeholder="Search" [(ngModel)]="searchTerm" (ngModelChange)="onSearchChange($event)" />
+
+        @if (searchTerm) {
+        <button class="absolute right-11" matSuffix mat-icon-button aria-label="Clear" (click)="onSearchChange('')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            </svg>
+        </button>
+        }
+
+    </div>
     <div class="flex-1 p-4 overflow-y-auto">
         <div class="grid gap-0 my-content overflow-hidden">
-            <div *ngFor="let post of posts$ | async"
+            <div *ngFor="let post of filteredPosts$ | async"
                 class="border-gray-700 hover:bg-gray-800  border-b p-4 cursor-pointer"
                 (click)="navigateToPost(post.id)">
                 <h3 class="font-bold text-sm text-yellow-400">{{ post.title }}</h3>
