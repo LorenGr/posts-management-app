@@ -49,11 +49,4 @@ export class PostsService {
         });
     }
 
-    createPost(title: string, body: string) {
-        return {
-            id: Math.random().toString(),
-            title,
-            body,
-        }; // Simulate local post creation
-    }
 }
