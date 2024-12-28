@@ -1,3 +1,5 @@
+<mat-progress-bar *ngIf="loading$ | async" mode="query"></mat-progress-bar>
+
 <div class="flex-1 p-4 overflow-y-auto">
     <div class="grid gap-0 overflow-hidden">
         <div *ngFor="let post of filteredPosts$ | async"

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Store, StoreModule } from '@ngrx/store';
 import { combineLatest, map, Observable } from 'rxjs';
 import { Post } from '../../core/state/posts.state';
-import { selectCurrentPage, selectPosts, selectSearch, selectTotalPosts } from '../../core/state/posts.selectors';
+import { selectCurrentPage, selectLoading, selectPosts, selectSearch, selectTotalPosts } from '../../core/state/posts.selectors';
 import { TruncatePipe } from '../../shared/pipes/truncate.pipe';
 import { CommonModule } from '@angular/common';
 import { loadPosts, updatePage } from '../../core/state/posts.actions';
@@ -15,13 +15,14 @@ import { CreatePostButtonComponent } from '../../shared/components/create-post-b
 import { ColorSelectorComponent } from '../../shared/components/color-selector/color-selector.component';
 import { NewBadgePipe } from '../../shared/pipes/new-badge.pipe';
 import { HighlightPipe } from '../../shared/pipes/highlight.pipe';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
     selector: 'app-posts-list',
     templateUrl: './posts-list.html',
     standalone: true,
     styleUrls: ['./posts-list.css'],
-    imports: [NewBadgePipe, TruncatePipe, HighlightPipe, CommonModule, StoreModule, FormsModule, MatFormFieldModule, CreatePostButtonComponent, MatFormField, MatInputModule, MatPaginatorModule, ColorSelectorComponent]
+    imports: [NewBadgePipe, MatProgressBarModule, TruncatePipe, HighlightPipe, CommonModule, StoreModule, FormsModule, MatFormFieldModule, CreatePostButtonComponent, MatFormField, MatInputModule, MatPaginatorModule, ColorSelectorComponent]
 })
 export class PostsListComponent {
     posts$: Observable<Post[]>;
@@ -30,6 +31,7 @@ export class PostsListComponent {
     limit: number = 10;
     searchTerm$: Observable<string>;
     currentPage$: Observable<number>;
+    loading$: Observable<boolean> | undefined;
 
 
     ngOnInit(): void {
@@ -48,6 +50,7 @@ export class PostsListComponent {
 
     constructor(private store: Store, private router: Router) {
         this.posts$ = this.store.select(selectPosts);
+        this.loading$ = this.store.select(selectLoading);
         this.currentPage$ = this.store.select(selectCurrentPage);
         this.totalPosts$ = this.store.select(selectTotalPosts);
         this.searchTerm$ = this.store.select(selectSearch);

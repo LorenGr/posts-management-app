@@ -10,3 +10,4 @@ export const loadDetailFailure = createAction('[Posts] Load Detail Failure', pro
 export const addPost = createAction('[Posts] Add Post', props<{ post: Post }>());
 export const updateSearch = createAction('[Posts] Update Search', props<{ search: string }>());
 export const updatePage = createAction('[Posts] Update Page', props<{ page: number }>());
+export const setLoading = createAction('[Posts] Set Loading', props<{ loading: boolean }>());

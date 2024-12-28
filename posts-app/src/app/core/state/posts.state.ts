@@ -20,9 +20,10 @@ export interface PostsState {
     totalPosts: number;
     posts: Post[];
     newPosts: Post[];
-    details: PostDetail[]
+    details: PostDetail[];
     search: string;
-    currentPage: number
+    currentPage: number;
+    loading: boolean;
 }
 
 export const initialState: PostsState = {
@@ -31,5 +32,6 @@ export const initialState: PostsState = {
     newPosts: [],
     details: [],
     search: '',
-    currentPage: 0
+    currentPage: 0,
+    loading: false
 };
