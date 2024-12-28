@@ -4,9 +4,7 @@
             class="border-gray-700 hover:bg-gray-700 hover:bg-opacity-30 border-l-gray-800 hover:border-l-primary border-l-4 border-b p-4 cursor-pointer"
             (click)="navigateToPost(post.id)">
             <h3 class="font-bold text-sm text-primary">{{ post.title }}
-                <span *ngIf="post.new"
-                    class="bg-blue-400 text-white text-xs font-semibold px-2 py-1 rounded-full ml-2">New</span>
-
+                <span [innerHTML]="post.new | newBadge"></span>
             </h3>
             <p class="text-gray-500">{{ post.body | truncate:50 }}</p>
         </div>

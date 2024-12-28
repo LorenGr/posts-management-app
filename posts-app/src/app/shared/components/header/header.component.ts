@@ -8,6 +8,7 @@ import { ColorSelectorComponent } from '../color-selector/color-selector.compone
 import { Store } from '@ngrx/store';
 import { addPost, loadPosts, updatePage, updateSearch } from '../../../core/state/posts.actions';
 import { Actions } from '@ngrx/effects';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-header',
@@ -20,16 +21,24 @@ export class HeaderComponent {
 
     searchTerm: string = '';
 
-    constructor(private store: Store) { }
+    constructor(private store: Store, private router: Router) { }
+
+    goToPosts(): void {
+        if (this.router.url !== '/posts') {
+            this.router.navigate(['/posts']);
+        }
+    }
 
     onSearchChange(searchString: string): void {
         this.searchTerm = searchString;
         this.store.dispatch(updateSearch({ search: searchString }));
+        this.goToPosts();
     }
 
     createPost(post: { title: string, body: string }): void {
         this.store.dispatch(addPost({ post: { ...post, id: Math.random().toString() } }));
         this.store.dispatch(updatePage({ page: 0 }));
+        this.goToPosts();
         this.store.dispatch(loadPosts());
     }
 }
