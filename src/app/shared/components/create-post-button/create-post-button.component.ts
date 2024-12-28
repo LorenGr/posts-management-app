@@ -23,7 +23,7 @@ export class CreatePostButtonComponent {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            this.onCreate.emit(result);
+            if (result) this.onCreate.emit(result);
         });
     }
 }
