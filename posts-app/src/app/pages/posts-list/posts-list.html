@@ -3,8 +3,7 @@
         <div *ngFor="let post of filteredPosts$ | async"
             class="border-gray-700 hover:bg-gray-700 hover:bg-opacity-30 border-l-gray-800 hover:border-l-primary border-l-4 border-b p-4 cursor-pointer"
             (click)="navigateToPost(post.id)">
-            <h3 class="font-bold text-sm text-primary">{{ post.title }}
-                <span [innerHTML]="post.new | newBadge"></span>
+            <h3 class="font-bold text-sm text-primary" [innerHTML]="post.title | highlight:(searchTerm$ | async)">
             </h3>
             <p class="text-gray-500">{{ post.body | truncate:50 }}</p>
         </div>

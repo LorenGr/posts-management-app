@@ -14,13 +14,14 @@ import { MatInputModule } from '@angular/material/input';
 import { CreatePostButtonComponent } from '../../shared/components/create-post-button/create-post-button.component';
 import { ColorSelectorComponent } from '../../shared/components/color-selector/color-selector.component';
 import { NewBadgePipe } from '../../shared/pipes/new-badge.pipe';
+import { HighlightPipe } from '../../shared/pipes/highlight.pipe';
 
 @Component({
     selector: 'app-posts-list',
     templateUrl: './posts-list.html',
     standalone: true,
     styleUrls: ['./posts-list.css'],
-    imports: [NewBadgePipe, TruncatePipe, CommonModule, StoreModule, FormsModule, MatFormFieldModule, CreatePostButtonComponent, MatFormField, MatInputModule, MatPaginatorModule, ColorSelectorComponent]
+    imports: [NewBadgePipe, TruncatePipe, HighlightPipe, CommonModule, StoreModule, FormsModule, MatFormFieldModule, CreatePostButtonComponent, MatFormField, MatInputModule, MatPaginatorModule, ColorSelectorComponent]
 })
 export class PostsListComponent {
     posts$: Observable<Post[]>;
