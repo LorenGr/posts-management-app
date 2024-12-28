@@ -1,14 +1,48 @@
-# PostsApp
+# Posts Management App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.1.
+This project is an Angular application for managing posts. It includes various components, pipes, and directives to provide a rich user experience.
 
-## Development server
+## Components
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### HeaderComponent
 
-## Code scaffolding
+The `HeaderComponent` is responsible for displaying the header of the application. It includes a search input, a button to create new posts, and a color selector to change the primary color of the application.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### PostsListComponent
+
+The `PostsListComponent` displays a list of posts. It includes pagination and filtering functionality to manage and view posts efficiently.
+
+### CreatePostButtonComponent
+
+The `CreatePostButtonComponent` includes a button to open a dialog for creating a new post. It uses Angular Material's dialog component to provide a form for entering post details.
+
+### CreatePostDialogComponent
+
+The `CreatePostDialogComponent` is a dialog component that provides a form for creating a new post. It includes input fields for the post title and body.
+
+### ColorSelectorComponent
+
+The `ColorSelectorComponent` includes a color picker that allows users to change the primary color of the application. It updates the `--color-primary` CSS variable dynamically.
+
+## Pipes
+
+### HighlightPipe
+
+The `HighlightPipe` is used to highlight parts of a string that match a search term. It wraps the matching parts in a `span` with a `highlight` class to apply custom styles.
+
+### TruncatePipe
+
+The `TruncatePipe` is used to truncate long text to a specified length. It adds ellipses (`...`) to indicate that the text has been truncated.
+
+### NewBadgePipe
+
+The `NewBadgePipe` is used to add a "New" badge to new posts. It returns a `span` with a `new-badge` class to apply custom styles.
+
+## Directives
+
+### HighlightDirective
+
+The `HighlightDirective` is used to highlight parts of a string that match a search term. It dynamically applies a background color to the matching parts of the text.
 
 ## Build
 
@@ -25,3 +59,4 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
