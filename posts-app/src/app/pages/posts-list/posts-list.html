@@ -1,6 +1,18 @@
 <div class="flex flex-col h-screen">
     <div class="flex p-9 justify-center items-center text-white">
-        <h1 class="flex-1  bg-gray-800 text-white">Posts</h1>
+        <h1 class="flex-1  bg-gray-800 text-white">Posts
+
+            <button class="my-btn rounded-3xl px-4 ml-4">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="size-6 inline-block">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg>
+
+                <span class="mx-4">
+                    Create new post</span>
+            </button>
+        </h1>
 
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
             class="size-6 mr-3 text-gray-300">
@@ -10,9 +22,9 @@
 
         <input type="search"
             class="my-border px-4 py-1 h-9 text-sm bg-transparent text-gray-400 border-gray-600 border rounded-3xl"
-            placeholder="Search" [(ngModel)]="searchTerm" (ngModelChange)="onSearchChange($event)" />
+            placeholder="Search" [ngModel]="searchTerm$ | async" (ngModelChange)="onSearchChange($event)" />
 
-        @if (searchTerm) {
+        @if (searchTerm$ | async) {
         <button class="absolute right-11" matSuffix mat-icon-button aria-label="Clear" (click)="onSearchChange('')">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="size-6">

@@ -25,7 +25,7 @@ export class PostsListComponent {
     currentPage: number = 1;
     limit: number = 10;
     searchTerm$: Observable<string>;
-    searchTerm: string = "";
+
 
     ngOnInit(): void {
         this.store.dispatch(loadPosts({ page: this.currentPage, limit: this.limit }));
@@ -44,8 +44,6 @@ export class PostsListComponent {
     onSearchChange(searchString: string) {
         this.store.dispatch(updateSearch({ search: searchString }));
     }
-
-
 
     constructor(private store: Store, private router: Router) {
         this.posts$ = this.store.select(selectPosts);
