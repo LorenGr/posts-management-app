@@ -11,6 +11,7 @@ import { PostDetail } from '../../core/state/posts.state';
     selector: 'app-posts-detail',
     templateUrl: './posts-detail.html',
     standalone: true,
+    styleUrls: ['./posts-detail.css'],
     imports: [StoreModule, CommonModule, RouterLink]
 })
 export class PostsDetailComponent implements OnInit {

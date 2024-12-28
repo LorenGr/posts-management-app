@@ -2,6 +2,7 @@ export interface Post {
     id: string;
     title: string;
     body: string;
+    new?: boolean;
 }
 
 export interface PostDetail {
@@ -12,20 +13,23 @@ export interface PostDetail {
 
 export interface PostsMeta {
     totalCount: number;
+    page?: number
 }
 
 export interface PostsState {
     totalPosts: number;
     posts: Post[];
+    newPosts: Post[];
     details: PostDetail[]
     search: string;
-    currentPage: number;
+    currentPage: number
 }
 
 export const initialState: PostsState = {
     totalPosts: 0,
     posts: [],
+    newPosts: [],
     details: [],
     search: '',
-    currentPage: 1,
+    currentPage: 0
 };

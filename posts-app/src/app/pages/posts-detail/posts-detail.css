@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:host {
+    @apply flex-1 overflow-auto
+}

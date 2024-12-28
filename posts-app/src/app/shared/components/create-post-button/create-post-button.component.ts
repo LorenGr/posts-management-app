@@ -2,12 +2,13 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { CreatePostDialogComponent } from '../create-post-dialog/create-post-dialog.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
     selector: 'app-create-post-button',
     templateUrl: './create-post-button.component.html',
     standalone: true,
-    imports: [CommonModule, MatDialogModule]
+    imports: [CommonModule, MatDialogModule, MatTooltipModule]
 })
 export class CreatePostButtonComponent {
 

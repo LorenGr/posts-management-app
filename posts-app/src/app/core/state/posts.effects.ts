@@ -1,23 +1,29 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators';
 import { PostsService } from '../services/posts.service';
 import * as PostsActions from './posts.actions';
 import { of } from 'rxjs';
+import { select, Store } from '@ngrx/store';
+import { selectCurrentPage } from './posts.selectors';
 
 @Injectable()
 export class PostsEffects {
-    constructor(private actions$: Actions, private postsService: PostsService) { }
+    constructor(private actions$: Actions, private postsService: PostsService, private store: Store) { }
 
     loadPosts$ = createEffect(() =>
         this.actions$.pipe(
             ofType(PostsActions.loadPosts),
-            mergeMap((action) =>
-                this.postsService.fetchPosts(action.page, action.limit).pipe(
+            withLatestFrom(this.store.pipe(select(selectCurrentPage))),
+            mergeMap(([action, currentPage]) =>
+                this.postsService.fetchPosts(currentPage + 1, 10).pipe(
                     map((response: any) => {
                         return PostsActions.loadPostsSuccess({
                             posts: response.data.posts.data,
-                            meta: response.data.posts.meta
+                            meta: {
+                                page: currentPage + 1,
+                                ...response.data.posts.meta
+                            }
                         })
                     },
                         catchError(error => of(PostsActions.loadPostsFailure({ error })))
