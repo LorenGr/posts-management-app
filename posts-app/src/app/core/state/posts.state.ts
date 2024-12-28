@@ -10,7 +10,12 @@ export interface PostDetail {
     body: string;
 }
 
+export interface PostsMeta {
+    totalCount: number;
+}
+
 export interface PostsState {
+    totalPosts: number;
     posts: Post[];
     details: PostDetail[]
     search: string;
@@ -18,6 +23,7 @@ export interface PostsState {
 }
 
 export const initialState: PostsState = {
+    totalPosts: 0,
     posts: [],
     details: [],
     search: '',

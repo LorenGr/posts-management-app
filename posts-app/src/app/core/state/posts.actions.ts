@@ -1,8 +1,8 @@
 import { createAction, props } from '@ngrx/store';
-import { Post, PostDetail } from './posts.state';
+import { Post, PostDetail, PostsMeta } from './posts.state';
 
-export const loadPosts = createAction('[Posts] Load Posts');
-export const loadPostsSuccess = createAction('[Posts] Load Posts Success', props<{ posts: Post[] }>());
+export const loadPosts = createAction('[Posts] Load Posts', props<{ page: number, limit: number }>());
+export const loadPostsSuccess = createAction('[Posts] Load Posts Success', props<{ posts: Post[], meta: PostsMeta }>());
 export const loadPostsFailure = createAction('[Posts] Load Posts Failure', props<{ error: any }>());
 
 export const loadDetail = createAction('[Posts] Load Detail', props<{ id: string }>());

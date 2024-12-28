@@ -1,12 +1,19 @@
-<nav class="p-4 bg-gray-800 text-white">
-    <h1>Posts</h1>
-    <button routerLink="/posts" class="">
-        << back</button>
-</nav>
+<h1 class="p-4 bg-gray-800 text-white">Posts</h1>
+<div class="p-4 flex flex-col h-screen">
+    <div *ngIf="post$ | async as post">
+        <div class="mb-3 flex items-center">
+            <button routerLink="/posts" class="text-white hover:bg-gray-600 p-3 inline-block rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
+                </svg>
+            </button> <span class="px-3 text-primary text-sm">BACK TO POSTS</span>
+        </div>
 
-<div class="flex items-center justify-between border-t border-gray-400 bg-white px-4 py-3 sm:px-6">
-    <div *ngIf="post$ | async as post" class="p-4">
-        <h1 class="text-2xl font-bold">{{ post.title }}</h1>
-        <p class="text-gray-600 mt-2">{{ post.body }}</p>
+        <div class="p-4 my-content">
+            <h1 class="font-bold text-md text-yellow-400">{{ post.title }}</h1>
+            <p class="text-gray-600 mt-2">{{ post.body }}</p>
+        </div>
+
     </div>
 </div>

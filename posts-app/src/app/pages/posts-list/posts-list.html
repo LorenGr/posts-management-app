@@ -1,12 +1,17 @@
-<h1 class="p-4 bg-gray-800 text-white">Posts</h1>
-<div class="grid gap-4 p-4">
-    <div *ngFor="let post of posts$ | async"
-        class="border border-gray-400 hover:border-yellow-400  p-4 rounded-lg shadow cursor-pointer"
-        (click)="navigateToPost(post.id)">
-        <h3 class="font-bold text-lg text-yellow-400">{{ post.title }}</h3>
-        <p class="text-gray-500">{{ post.body | truncate:50 }}</p>
+<div class="flex flex-col h-screen">
+    <h1 class="p-4 bg-gray-800 text-white">Posts</h1>
+    <div class="flex-1 p-4 overflow-y-auto">
+        <div class="grid gap-0 my-content overflow-hidden">
+            <div *ngFor="let post of posts$ | async"
+                class="border-gray-700 hover:bg-gray-800  border-b p-4 cursor-pointer"
+                (click)="navigateToPost(post.id)">
+                <h3 class="font-bold text-sm text-yellow-400">{{ post.title }}</h3>
+                <p class="text-gray-500">{{ post.body | truncate:50 }}</p>
+            </div>
+        </div>
     </div>
-</div>
-<div class="sticky bottom-0">
-    <app-pagination [currentPage]="currentPage" (pageChange)="onPageChange($event)"></app-pagination>
+    <div class="sticky bottom-0">
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [length]="totalPosts$ | async" [pageSize]="limit"
+            [pageIndex]="currentPage" (page)="onPageChange($event)"></mat-paginator>
+    </div>
 </div>

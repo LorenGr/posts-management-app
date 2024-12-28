@@ -12,9 +12,14 @@ export class PostsEffects {
     loadPosts$ = createEffect(() =>
         this.actions$.pipe(
             ofType(PostsActions.loadPosts),
-            mergeMap(() =>
-                this.postsService.fetchPosts(1, 10).pipe(
-                    map((response: any) => PostsActions.loadPostsSuccess({ posts: response.data.posts.data }),
+            mergeMap((action) =>
+                this.postsService.fetchPosts(action.page, action.limit).pipe(
+                    map((response: any) => {
+                        return PostsActions.loadPostsSuccess({
+                            posts: response.data.posts.data,
+                            meta: response.data.posts.meta
+                        })
+                    },
                         catchError(error => of(PostsActions.loadPostsFailure({ error })))
                     )
                 )
