@@ -6,17 +6,19 @@ import { Post } from '../../core/state/posts.state';
 import { selectPosts, selectSearch, selectTotalPosts } from '../../core/state/posts.selectors';
 import { TruncatePipe } from '../../shared/pipes/truncate.pipe';
 import { CommonModule } from '@angular/common';
-import { loadPosts, updateSearch } from '../../core/state/posts.actions';
+import { addPost, loadPosts, updateSearch } from '../../core/state/posts.actions';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
-import { FormControl, FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { MatFormField, MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { CreatePostButtonComponent } from '../../shared/components/create-post-button/create-post-button.component';
+import { ColorSelectorComponent } from '../../shared/components/color-selector/color-selector.component';
 
 @Component({
     selector: 'app-posts-list',
     templateUrl: './posts-list.html',
     standalone: true,
-    imports: [TruncatePipe, CommonModule, StoreModule, FormsModule, MatFormFieldModule, MatFormField, MatInputModule, MatPaginatorModule]
+    imports: [TruncatePipe, CommonModule, StoreModule, FormsModule, MatFormFieldModule, CreatePostButtonComponent, MatFormField, MatInputModule, MatPaginatorModule, ColorSelectorComponent]
 })
 export class PostsListComponent {
     posts$: Observable<Post[]>;
@@ -43,6 +45,10 @@ export class PostsListComponent {
 
     onSearchChange(searchString: string) {
         this.store.dispatch(updateSearch({ search: searchString }));
+    }
+
+    createPost(post: { title: string, body: string }) {
+        this.store.dispatch(addPost({ post: { ...post, id: Math.random().toString() } }));
     }
 
     constructor(private store: Store, private router: Router) {

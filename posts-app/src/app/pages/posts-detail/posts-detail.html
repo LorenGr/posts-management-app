@@ -1,4 +1,6 @@
-<h1 class="p-9 bg-gray-800 text-white">Post Details</h1>
+<div class="mx-6 border-b-4 border-gray-700">
+    <h1 class="p-9 bg-gray-800 text-white text-lg">Post Details</h1>
+</div>
 <div class="p-4 flex flex-col h-screen">
     <div *ngIf="post$ | async as post">
         <div class="mb-3 flex items-center">
@@ -7,11 +9,11 @@
                     stroke="currentColor" class="size-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
                 </svg>
-            </button> <span class="px-3 text-primary text-sm">BACK TO POSTS</span>
+            </button> <span class="px-3 text-gray-400 text-sm">BACK TO POSTS</span>
         </div>
 
-        <div class="p-4 my-content">
-            <h1 class="font-bold text-md text-yellow-400">{{ post.title }}</h1>
+        <div class="p-4">
+            <h1 class="font-bold text-md text-primary">{{ post.title }}</h1>
             <p class="text-gray-600 mt-2">{{ post.body }}</p>
         </div>
 

@@ -2,22 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    /* THEME */
+    --color-primary : rgb(124, 220, 0);
+
+
+    /* OVERRIDES */
+    --mdc-dialog-container-color:rgb(31 41 55) !important;
+    --mat-option-selected-state-label-text-color: var(--color-primary) !important;
+    --mdc-outlined-text-field-focus-outline-color:var(--color-primary) !important;
+    --mat-paginator-container-background-color: transparent !important;
+    --mdc-outlined-text-field-focus-label-text-color:  var(--color-primary) !important;
+    --mat-dialog-actions-alignment: end !important;
+    --mdc-outlined-text-field-focus-outline-color: var(--color-primary) !important;
+}
+
+
 .my-border {
     outline: none;
-    @apply hover:border-yellow-400 focus:border-yellow-400 focus:ring-yellow-400;
+    @apply hover:border-primary focus:border-primary focus:ring-primary;
 }
 
 .my-btn {
     @apply my-border sm:text-sm shadow-sm bg-gray-800 border-gray-600 border text-white font-bold py-2 px-2;
 }
-.my-content {
-    @apply shadow-md shadow-gray-800 bg-gray-900 rounded-lg border border-gray-600;
+
+.my-field {
+    @apply my-border px-4 py-1 text-sm bg-transparent text-gray-400 border-gray-600 border rounded-3xl
 }
-.text-primary {
-    @apply text-gray-500;
-}
+
 html, body { height: 100%; }
 body { overflow:hidden; margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 input[type="search"] {--webkit-appearance: searchfield !important;} input[type=search]::-webkit-search-cancel-button {-webkit-appearance: searchfield-cancel-button !important;}
 input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-results-button, input[type="search"]::-webkit-search-results-decoration {   -webkit-appearance: initial !important; }
+
+
+.mdc-notched-outline__notch {
+    border-right: none !important;
+  }
