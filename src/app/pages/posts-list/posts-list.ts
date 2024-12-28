@@ -16,13 +16,14 @@ import { ColorSelectorComponent } from '../../shared/components/color-selector/c
 import { NewBadgePipe } from '../../shared/pipes/new-badge.pipe';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { HighlightDirective } from '../../shared/directives/highlight.directive';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
     selector: 'app-posts-list',
     templateUrl: './posts-list.html',
     standalone: true,
     styleUrls: ['./posts-list.css'],
-    imports: [NewBadgePipe, HighlightDirective, MatProgressBarModule, TruncatePipe, CommonModule, StoreModule, FormsModule, MatFormFieldModule, CreatePostButtonComponent, MatFormField, MatInputModule, MatPaginatorModule, ColorSelectorComponent]
+    imports: [NewBadgePipe, HighlightDirective, NgScrollbarModule, MatProgressBarModule, TruncatePipe, CommonModule, StoreModule, FormsModule, MatFormFieldModule, CreatePostButtonComponent, MatFormField, MatInputModule, MatPaginatorModule, ColorSelectorComponent]
 })
 export class PostsListComponent {
     posts$: Observable<Post[]>;
