@@ -1,9 +1,9 @@
 {
 "version": 2,
-"framework": "vite",
+"framework": "angular",
 "buildCommand": "npm run build",
-"outputDirectory": "dist",
+"outputDirectory": "dist/posts-app/browser",
 "rewrites": [
-{ "source": "/(.*)", "destination": "/browser/index.html" }
+{ "source": "/(.*)", "destination": "/index.html" }
 ]
 }
