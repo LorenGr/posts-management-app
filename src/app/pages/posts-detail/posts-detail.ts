@@ -7,23 +7,30 @@ import { CommonModule } from '@angular/common';
 import { loadDetail } from '../../core/state/posts.actions';
 import { PostDetail } from '../../core/state/posts.state';
 
+function tester() {
+  console.log('tester');
+  debugger;
+}
+
 @Component({
-    selector: 'app-posts-detail',
-    templateUrl: './posts-detail.html',
-    standalone: true,
-    styleUrls: ['./posts-detail.css'],
-    imports: [StoreModule, CommonModule, RouterLink]
+  selector: 'app-posts-detail',
+  templateUrl: './posts-detail.html',
+  standalone: true,
+  styleUrls: ['./posts-detail.css'],
+  imports: [StoreModule, CommonModule, RouterLink],
 })
 export class PostsDetailComponent implements OnInit {
-    post$: Observable<PostDetail | undefined> | undefined;
-    postId: string;
+  post$: Observable<PostDetail | undefined> | undefined;
+  postId: string;
 
-    constructor(private route: ActivatedRoute, private store: Store) {
-        this.postId = this.route.snapshot.paramMap.get('id') as string;
-        this.post$ = this.store.select(selectPost(this.postId));
-    }
+  constructor(private route: ActivatedRoute, private store: Store) {
+    this.postId = this.route.snapshot.paramMap.get('id') as string;
+    this.post$ = this.store.select(selectPost(this.postId));
 
-    ngOnInit(): void {
-        this.store.dispatch(loadDetail({ id: this.postId }));
-    }
+    tester();
+  }
+
+  ngOnInit(): void {
+    this.store.dispatch(loadDetail({ id: this.postId }));
+  }
 }
